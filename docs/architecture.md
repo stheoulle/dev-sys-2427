@@ -6,13 +6,11 @@ This project is a command-line TicTacToe game implemented in Rust. The goal is t
 
 ## Components and Modules
 
-- **main.rs**: The entry point of the application. It manages the game loop, user interaction, and orchestrates calls to other functions.
-- **Board Management**: Functions for creating, displaying, and updating the game board. These ensure the board state is always valid and user-friendly.
-- **User Input**: Functions to handle player character selection and move input, including validation to prevent invalid moves.
-- **AI Logic**: Implements the minimax algorithm for the AI to choose optimal moves, making the game challenging for the player.
-- **Win/Draw Detection**: Functions to check for win conditions and detect draws, ensuring the game ends appropriately.
+- **main.rs**: The entry point of the application. It only calls the main game function from the library.
+- **lib.rs**: Contains all core game logic, including board management, user input, AI (minimax), win/draw detection, and utility functions. This separation allows for easier testing and reuse.
+- **tests/game_tests.rs**: Integration tests for the main game logic, ensuring correctness of board operations, win/draw detection, and utility functions. Tests are written using Rust's standard test framework and import functions from `lib.rs`.
 
-This modular architecture separates concerns, making the code easier to maintain and extend. Each module has a clear responsibility, which improves readability and testability.
+This architecture follows Rust best practices by separating the executable entry point from the library code, and by keeping tests in a dedicated folder. It improves maintainability, testability, and clarity.
 
 ## Usage
 
