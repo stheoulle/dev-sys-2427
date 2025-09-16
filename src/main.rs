@@ -1,6 +1,7 @@
 
 use clap::Parser;
 use std::path::PathBuf;
+use dev_sys_2427::url_to_filename;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -86,24 +87,6 @@ fn crawl(
             }
         }
     }
-}
-
-fn url_to_filename(url: &str) -> String {
-    let parsed = Url::parse(url).unwrap();
-    let mut name = String::new();
-    if let Some(host) = parsed.host_str() {
-        name.push_str(host);
-    }
-    for seg in parsed.path_segments().map(|c| c.collect::<Vec<_>>()).unwrap_or_default() {
-        if !seg.is_empty() {
-            name.push('_');
-            name.push_str(seg);
-        }
-    }
-    if name.is_empty() {
-        name = "index".to_string();
-    }
-    name
 }
 
 fn main() {
